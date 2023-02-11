@@ -7,11 +7,12 @@ public class Order {
 
     public Order(String id, String deliveryTime) {
 
-        // The deliveryTime has to converted from string to int and then stored in the attribute
-        //deliveryTime  = HH*60 + MM
     	this.id = id;
-        int time = Integer.parseInt(deliveryTime.substring(0, 2)) * 60 + Integer.parseInt(deliveryTime.substring(3));
-        this.deliveryTime = time;
+
+        int hours = Integer.valueOf(deliveryTime.substring(0, 2));//
+        int minutes = Integer.valueOf(deliveryTime.substring(3));
+
+        this.deliveryTime = hours * 60 + minutes;
     }
 
     public String getId() {
@@ -20,3 +21,7 @@ public class Order {
 
     public int getDeliveryTime() {return deliveryTime;}
 }
+
+/* hours=if deliveryTime is "12:34", then deliveryTime.substring(0, 2) would return "12", and Integer.valueOf("12") would return 12.
+ * minutes=if deliveryTime is "12:34", then deliveryTime.substring(3) would return "34", and Integer.valueOf("34") would return 34.
+ */
