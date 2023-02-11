@@ -8,11 +8,9 @@ public class Order {
     public Order(String id, String deliveryTime) {
 
     	this.id = id;
+        int time = Integer.parseInt(deliveryTime.substring(0, 2)) * 60 + Integer.parseInt(deliveryTime.substring(3));
+        this.deliveryTime = time;
 
-        int hours = Integer.valueOf(deliveryTime.substring(0, 2));//
-        int minutes = Integer.valueOf(deliveryTime.substring(3));
-
-        this.deliveryTime = hours * 60 + minutes;
     }
 
     public String getId() {
