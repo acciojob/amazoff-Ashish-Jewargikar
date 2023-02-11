@@ -3,8 +3,6 @@ package com.driver;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
-
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -96,33 +94,7 @@ public class OrderRepository {
         }
         return orderCount;
     }
-//    public String getLastDeliveryTimeByPartnerId(String partnerId) {
-//        // Return the time when that partnerId will deliver his last delivery order.
-//        String time = "";
-//        List<String> list = pairDb.get(partnerId);
-//        int deliveryTime = 0;
-//        for (String s : list) {
-//            Order order = orderDb.get(s);
-//            deliveryTime = Math.max(deliveryTime, order.getDeliveryTime());
-//        }
-//        int hour = deliveryTime / 60;
-//        String sHour = "";
-//        if (hour < 10) {
-//            sHour = "0" + String.valueOf(hour);
-//        } else {
-//            sHour = String.valueOf(hour);
-//        }
-//
-//        int min = deliveryTime % 60;
-//        String sMin = "";
-//        if (min < 10) {
-//            sMin = "0" + String.valueOf(min);
-//        } else {
-//            sMin = String.valueOf(min);
-//        }
-//        time = sHour + ":" + sMin;
-//        return time;
-//    }
+
     public String getLastDeliveryTimeByPartnerId(String partnerId) {
         List<String> orderIds = pairDb.get(partnerId);
         if (orderIds == null) {
@@ -141,18 +113,7 @@ public class OrderRepository {
         return String.format("%02d:%02d", hours, minutes);
     }
     
-//    public String deletePartnerById(String partnerId) {
-//        partnerDb.remove(partnerId);
-//
-//        List<String> list = pairDb.getOrDefault(partnerId, new ArrayList<>());
-//        ListIterator<String> itr = list.listIterator();
-//        while (itr.hasNext()) {
-//            String s = itr.next();
-//            assignedDb.remove(s);
-//        }
-//        pairDb.remove(partnerId);
-//        return "Deleted";
-//    }
+
     public String deletePartnerById(String partnerId) {
         partnerDb.remove(partnerId);
 
@@ -167,22 +128,7 @@ public class OrderRepository {
 
         return "Deleted";
     }
-    
-//    public String deleteOrderById(String orderId) {
-//        orderDb.remove(orderId);
-//        String partnerId = assignedDb.get(orderId);
-//        assignedDb.remove(orderId);
-//        List<String> list = pairDb.get(partnerId);
-//        ListIterator<String> itr = list.listIterator();
-//        while (itr.hasNext()) {
-//            String s = itr.next();
-//            if (s.equals(orderId)) {
-//                itr.remove();
-//            }
-//        }
-//        pairDb.put(partnerId, list);
-//        return "Deleted";
-//    }
+
     public String deleteOrderById(String orderId) {
         orderDb.remove(orderId);
         String partnerId = assignedDb.remove(orderId);
