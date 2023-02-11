@@ -71,18 +71,18 @@ public class OrderRepository {
         int countOfOrders = orderDb.size() - assignedDb.size();
         return countOfOrders;
     }
-//    public int getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId) {
-//        int countOfOrders = 0;
-//        List<String> list = pairDb.get(partnerId);
-//        int deliveryTime = Integer.parseInt(time.substring(0, 2)) * 60 + Integer.parseInt(time.substring(3));
-//        for (String s : list) {
-//            Order order = orderDb.get(s);
-//            if (order.getDeliveryTime() > deliveryTime) {
-//                countOfOrders++;
-//            }
-//        }
-//        return countOfOrders;
-//    }
+    public int getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId) {
+        int countOfOrders = 0;
+        List<String> list = pairDb.get(partnerId);
+        int deliveryTime = Integer.parseInt(time.substring(0, 2)) * 60 + Integer.parseInt(time.substring(3));
+        for (String s : list) {
+            Order order = orderDb.get(s);
+            if (order.getDeliveryTime() > deliveryTime) {
+                countOfOrders++;
+            }
+        }
+        return countOfOrders;
+    }
     
     public int getOrderCountAfterGivenTimeByPartnerId(String time, String partnerId) {
     	int orderCount = 0;
